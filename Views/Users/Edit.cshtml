@@ -1,0 +1,92 @@
+﻿@model BudgetPlanningWebApplication.User
+
+@{
+    ViewData["Title"] = "Изменить профиль";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<ul class="nav nav-pills nav-justified" style="background: linear-gradient(to right, rgba(132, 250, 176, 0.5), rgba(143, 211, 244, 0.5));">
+    @*<li class="nav-item">
+    <a class="nav-link" role="button" asp-area="" asp-controller="Home" asp-action="Index" style="color:black; font-size:large">Мой кошелек</a>
+    </li>*@
+    <li class="nav-item">
+        <a class="nav-link" style="color:black; font-size:large" role="button"
+           asp-area=" " asp-controller="Users" asp-action="Details" asp-route-id="@Convert.ToInt32(Context.Request.Cookies["uId"])">Мой аккаунт</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" style="color:black; font-size:large" role="button" asp-area="" asp-controller="Home" asp-action="GoToTransaction">Транзакции</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" style="color:black; font-size:large" role="button" asp-area="" asp-controller="FinancialPlans" asp-action="Index">Финансовый план</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" style="color:black; font-size:large" asp-area="" asp-controller="RT" asp-action="LogOut">Выход</a>
+    </li>
+</ul>
+
+<br>
+<br>
+
+<h2 class="fw-bold mb-4">Изменение данных аккаунта</h2>
+<div>
+    <a asp-action="Details" asp-route-id="@Model.Id">Вернуться на страницу аккаунта</a>
+</div>
+<br>
+<div class="col-lg-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+                <div class="row">
+                    <div class="col-sm-3">
+                <label asp-for="FirstName" class="control-label mb-0 fw-bold" style="font-size:larger">Имя</label>
+                <input asp-for="FirstName" class="form-control" style="width:300px;font-size:larger" />
+                        <span asp-validation-for="FirstName" class="text-danger"></span>
+                    </div>
+                </div>
+            <br>
+                <div class="row">
+                    <div class="col-sm-3">
+                <label asp-for="SecondName" class="control-label mb-0 fw-bold" style="font-size:larger">Фамилия</label>
+                <input asp-for="SecondName" class="form-control" style="width:300px;font-size:larger" />
+                        <span asp-validation-for="SecondName" class="text-danger"></span>
+                    </div>
+                </div>
+            <br>
+                <div class="row">
+                    <div class="col-sm-3">
+                <label asp-for="DateOfBirth" class="control-label mb-0 fw-bold" style="font-size:larger">Дата рождения</label>
+                <input asp-for="DateOfBirth" class="form-control" style="width:300px;font-size:larger" />
+                        <span asp-validation-for="DateOfBirth" class="text-danger"></span>
+                    </div>
+                </div>
+            <br>
+                <div class="row">
+                    <div class="col-sm-3">
+                <label asp-for="Login" class="control-label mb-0 fw-bold" style="font-size:larger">Логин</label>
+                <input asp-for="Login" class="form-control" style="width:300px;font-size:larger" />
+                        <span asp-validation-for="Login" class="text-danger"></span>
+                    </div>
+                </div>
+            <br>
+                <div class="row">
+                    <div class="col-sm-3">
+                <label asp-for="Password" class="control-label mb-0 fw-bold" style="font-size:larger">Пароль</label>
+                <input asp-for="Password" class="form-control" style="width:300px;font-size:larger" />
+                        <span asp-validation-for="Password" class="text-danger"></span>
+                    </div>
+                </div>
+                <br>
+            <div class="form-group">
+                    <input type="submit" value="Сохранить" style="width:300px; background-color: #8fc4b7;"
+                           class="btn btn-success btn-block btn-lg text-body justify-content-center" />
+            </div>
+        </form>
+        </div>
+     
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+
+
+
+                    

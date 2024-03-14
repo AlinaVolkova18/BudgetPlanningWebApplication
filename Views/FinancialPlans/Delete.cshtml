@@ -1,0 +1,77 @@
+﻿@model BudgetPlanningWebApplication.FinancialPlan
+
+@{
+    ViewData["Title"] = "Удалить финансовый план";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<ul class="nav nav-pills nav-justified" style="background: linear-gradient(to right, rgba(132, 250, 176, 0.5), rgba(143, 211, 244, 0.5));">
+    @*<li class="nav-item">
+    <a class="nav-link" role="button" asp-area="" asp-controller="Home" asp-action="Index" style="color:black; font-size:large">Мой кошелек</a>
+    </li>*@
+    <li class="nav-item">
+        <a class="nav-link" style="color:black; font-size:large" role="button"
+           asp-area=" " asp-controller="Users" asp-action="Details" asp-route-id="@Convert.ToInt32(Context.Request.Cookies["uId"])">Мой аккаунт</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" style="color:black; font-size:large" role="button" asp-area="" asp-controller="Home" asp-action="GoToTransaction">Транзакции</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" style="color:black; font-size:large" role="button" asp-area="" asp-controller="FinancialPlans" asp-action="Index">Финансовый план</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" style="color:black; font-size:large" asp-area="" asp-controller="RT" asp-action="LogOut">Выход</a>
+    </li>
+</ul>
+
+<br>
+<br>
+<h2 class="fw-bold mb-4">Удаление финансового плана</h2>
+<div>
+    <a asp-action="Index">Вернуться на страницу плана</a>
+</div>
+<br>
+<div class="col">
+    <div class="row">
+        <div class="col-sm-3">
+            <p class="mb-0 fw-bold" style="font-size:larger">Название</p>
+        </div>
+        <div class="col-sm-5">
+            <p class="text-muted mb-0" style="font-size:larger">@Html.DisplayFor(model => model.Name)</p>
+        </div>
+    </div>
+    <hr>
+    <div class="row">
+        <div class="col-sm-3">
+            <p class="mb-0 fw-bold" style="font-size:larger">Лимит</p>
+        </div>
+        <div class="col-sm-5">
+            <p class="text-muted mb-0" style="font-size:larger">@Html.DisplayFor(model => model.Limit)</p>
+        </div>
+    </div>
+    <hr>
+    <div class="row">
+        <div class="col-sm-3">
+            <p class="mb-0 fw-bold" style="font-size:larger">Категория</p>
+        </div>
+        <div class="col-sm-5">
+            <p class="text-muted mb-0" style="font-size:larger">@Html.DisplayFor(model => model.Category.Name)</p>
+        </div>
+    </div>
+    <hr>
+    <div class="row">
+        <div class="col-sm-3">
+            <p class="mb-0 fw-bold" style="font-size:larger">Обязательный платёж</p>
+        </div>
+        <div class="col-sm-5">
+            <p class="text-muted mb-0" style="font-size:larger">@Html.DisplayFor(model => model.MandatoryPayment.Name)</p>
+        </div>
+    </div>
+    <hr>
+</div>
+
+<form asp-action="Delete">
+    <input type="hidden" asp-for="Id" />
+    <input type="submit" value="Удалить" style="width:400px; background-color: #B22222;"
+           class="btn btn-success btn-block btn-lg text-body" />
+</form>

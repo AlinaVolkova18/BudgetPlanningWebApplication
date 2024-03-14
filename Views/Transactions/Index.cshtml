@@ -1,0 +1,131 @@
+﻿@model IEnumerable<BudgetPlanningWebApplication.Transaction>
+
+@{
+    ViewData["Title"] = "Транзакции";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<ul class="nav nav-pills nav-justified" style="background: linear-gradient(to right, rgba(132, 250, 176, 0.5), rgba(143, 211, 244, 0.5));">
+    @*<li class="nav-item">
+    <a class="nav-link" role="button" asp-area="" asp-controller="Home" asp-action="Index" style="color:black; font-size:large">Мой кошелек</a>
+    </li>*@
+    <li class="nav-item">
+        <a class="nav-link" style="color:black; font-size:large;"
+           asp-area=" " asp-controller="Users" asp-action="Details" asp-route-id="@Convert.ToInt32(Context.Request.Cookies["uId"])">Мой аккаунт</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link active" style="color:black; font-size:large; border: 4px solid #40E0D0; background: linear-gradient(to right, rgba(132, 250, 176, 0.5), rgba(143, 211, 244, 0.5));" 
+        role="button" asp-area="" asp-controller="Home" asp-action="GoToTransaction">Транзакции</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" style="color:black; font-size:large" role="button" asp-area="" asp-controller="FinancialPlans" asp-action="Index">Финансовый план</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" style="color:black; font-size:large" asp-area="" asp-controller="RT" asp-action="LogOut">Выход</a>
+    </li>
+</ul>
+<br>
+
+<h5 class="fw-bold mb-4">Текущий баланс:</h5>
+<p class="mb-4" style="font-size:larger">Наличные - @ViewData["Balances1"]р.</p>
+<p class="mb-4" style="font-size:larger">Банковская карта - @ViewData["Balances2"]р.</p>
+
+<p>
+    <a asp-action="SelectTypeOfTransaction" class="btn btn-success btn-block btn-lg text-body" 
+    style="width:300px; background-color: #8fc4b7; color:black;">Добавить транзакцию</a>
+</p>
+
+<table id="example" class="table table-hover table-borderless">
+    <thead>
+        <tr class="text-center">
+            <th class="border-bottom border-primary" style="font-size:larger">
+                Дата
+            </th>
+            <th class="border-bottom  border-primary" style="font-size:larger">
+                Актив
+            </th>
+            <th class="border-bottom  border-primary" style="font-size:larger">
+                Тип транзакции
+            </th>
+            <th class="border-bottom  border-primary" style="font-size:larger">
+                Сумма
+            </th>
+            <th class="border-bottom   border-primary" style="font-size:larger">
+                Категория
+            </th>
+            @*<th class="border-bottom border-primary" style="font-size:larger">
+                Комментарий
+            </th>*@
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+
+@foreach (var item in Model) {
+            if (item.TypeOfTransaction.Name == "Доход")
+            {
+                <tr>
+                    <td class=" border-top border-primary" style="font-size:larger">
+                        @Html.DisplayFor(modelItem => item.Date)
+                    </td>
+                    <td class=" border-top border-primary" style="font-size:larger">
+                        @Html.DisplayFor(modelItem => item.Active.Name)
+                    </td>
+                    <td class=" border-top border-primary" style="font-size:larger">
+                        @Html.DisplayFor(modelItem => item.TypeOfTransaction.Name)
+                    </td>
+                    <td class="text-success border-top border-primary" style="font-size:larger">
+                        + @Html.DisplayFor(modelItem => item.Sum)
+                    </td>
+                    <td class=" border-top border-primary" style="font-size:larger">
+                        @Html.DisplayFor(modelItem => item.Category.Name)
+                    </td>
+                    @*<td class="border-top border-success" style="font-size:larger">
+                        @Html.DisplayFor(modelItem => item.Comment)
+                    </td>*@
+                    <td @*class="border-top border-primary"*@>
+                        <a asp-action="Edit" asp-route-id="@item.Id">Изменить</a> |
+                        <a asp-action="Details" asp-route-id="@item.Id">Детали</a> |
+                        <a asp-action="Delete" asp-route-id="@item.Id">Удалить</a>
+                    </td>
+                </tr>
+            }
+            else
+            {
+                <tr>
+                    <td class=" border-top border-primary" style="font-size:larger">
+                        @Html.DisplayFor(modelItem => item.Date)
+                    </td>
+                    <td class=" border-top border-primary" style="font-size:larger">
+                        @Html.DisplayFor(modelItem => item.Active.Name)
+                    </td>
+                    <td class=" border-top border-primary" style="font-size:larger">
+                        @Html.DisplayFor(modelItem => item.TypeOfTransaction.Name)
+                    </td>
+                    <td class="text-danger border-top border-primary" style="font-size:larger">
+                        - @Html.DisplayFor(modelItem => item.Sum)
+                    </td>
+                    <td class=" border-top border-primary" style="font-size:larger">
+                        @Html.DisplayFor(modelItem => item.Category.Name)
+                    </td>
+                    @*<td class="border-top border-success" style="font-size:larger">
+                        @Html.DisplayFor(modelItem => item.Comment)
+                    </td>*@
+                    <td @*class="border-top border-primary"*@>
+                        <a asp-action="Edit" asp-route-id="@item.Id">Изменить</a> |
+                        <a asp-action="Details" asp-route-id="@item.Id">Детали</a> |
+                        <a asp-action="Delete" asp-route-id="@item.Id">Удалить</a>
+                    </td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.11.3/js/dataTables.bootstrap5.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#example").DataTable();
+    });
+</script>

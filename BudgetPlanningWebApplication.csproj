@@ -1,0 +1,66 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="Views\Balances\Create.cshtml" />
+    <None Include="Views\Balances\Delete.cshtml" />
+    <None Include="Views\Balances\Details.cshtml" />
+    <None Include="Views\Balances\Edit.cshtml" />
+    <None Include="Views\Balances\Index.cshtml" />
+    <None Include="Views\Balances\SelectActive.cshtml" />
+    <None Include="Views\FinancialPlans\Create.cshtml" />
+    <None Include="Views\FinancialPlans\Delete.cshtml" />
+    <None Include="Views\FinancialPlans\Details.cshtml" />
+    <None Include="Views\FinancialPlans\Edit.cshtml" />
+    <None Include="Views\FinancialPlans\Index.cshtml" />
+    <None Include="Views\Home\Index.cshtml" />
+    <None Include="Views\Home\Privacy.cshtml" />
+    <None Include="Views\MandatoryPayments\Create.cshtml" />
+    <None Include="Views\MandatoryPayments\Delete.cshtml" />
+    <None Include="Views\MandatoryPayments\Details.cshtml" />
+    <None Include="Views\MandatoryPayments\Edit.cshtml" />
+    <None Include="Views\MandatoryPayments\Index.cshtml" />
+    <None Include="Views\RT\Index.cshtml" />
+    <None Include="Views\RT\Registr.cshtml" />
+    <None Include="Views\Shared\Error.cshtml" />
+    <None Include="Views\Shared\_Layout.cshtml" />
+    <None Include="Views\Shared\_ValidationScriptsPartial.cshtml" />
+    <None Include="Views\Transactions\Create.cshtml" />
+    <None Include="Views\Transactions\Delete.cshtml" />
+    <None Include="Views\Transactions\Details.cshtml" />
+    <None Include="Views\Transactions\Edit.cshtml" />
+    <None Include="Views\Transactions\Index.cshtml" />
+    <None Include="Views\Transactions\SelectTypeOfTransaction.cshtml" />
+    <None Include="Views\Users1\Create.cshtml" />
+    <None Include="Views\Users1\Delete.cshtml" />
+    <None Include="Views\Users1\Details.cshtml" />
+    <None Include="Views\Users1\Edit.cshtml" />
+    <None Include="Views\Users1\Index.cshtml" />
+    <None Include="Views\Users\Create.cshtml" />
+    <None Include="Views\Users\Delete.cshtml" />
+    <None Include="Views\Users\Details.cshtml" />
+    <None Include="Views\Users\Edit.cshtml" />
+    <None Include="Views\Users\Index.cshtml" />
+    <None Include="Views\_ViewImports.cshtml" />
+    <None Include="Views\_ViewStart.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="7.0.5">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="7.0.5" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="7.0.5">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="6.0.13" />
+  </ItemGroup>
+
+</Project>

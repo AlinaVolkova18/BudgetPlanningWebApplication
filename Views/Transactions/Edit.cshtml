@@ -1,0 +1,96 @@
+﻿@model BudgetPlanningWebApplication.Transaction
+
+@{
+    ViewData["Title"] = "Изменить транзакцию";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<ul class="nav nav-pills nav-justified" style="background: linear-gradient(to right, rgba(132, 250, 176, 0.5), rgba(143, 211, 244, 0.5));">
+    @*<li class="nav-item">
+    <a class="nav-link" role="button" asp-area="" asp-controller="Home" asp-action="Index" style="color:black; font-size:large">Мой кошелек</a>
+    </li>*@
+    <li class="nav-item">
+        <a class="nav-link" style="color:black; font-size:large" role="button"
+           asp-area=" " asp-controller="Users" asp-action="Details" asp-route-id="@Convert.ToInt32(Context.Request.Cookies["uId"])">Мой аккаунт</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" style="color:black; font-size:large" role="button" asp-area="" asp-controller="Home" asp-action="GoToTransaction">Транзакции</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" style="color:black; font-size:large" role="button" asp-area="" asp-controller="FinancialPlans" asp-action="Index">Финансовый план</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" style="color:black; font-size:large" asp-area="" asp-controller="RT" asp-action="LogOut">Выход</a>
+    </li>
+</ul>
+
+<br>
+
+<h2 class="fw-bold mb-4">Изменение данных транзакции</h2>
+<div>
+    <a asp-action="Index">Вернуться к списку транзакций</a>
+</div>
+<br>
+
+<div class="col-lg-4">
+    <form asp-action="Edit">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <input type="hidden" asp-for="Id" />
+        <div class="row">
+            <div class="col-sm-3">
+                <label asp-for="TypeOfTransactionId" class="control-label mb-0 fw-bold" style="font-size:larger">Транзакция</label>
+                <select asp-for="TypeOfTransactionId" class="form-control" style="width:300px;font-size:larger" asp-items="ViewBag.TypeOfTransactionId"></select>
+                <span asp-validation-for="TypeOfTransactionId" class="text-danger"></span>
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-sm-3">
+                <label asp-for="CategoryId" class="control-label mb-0 fw-bold" style="font-size:larger">Категория</label>
+                <select asp-for="CategoryId" class="form-control" style="width:300px;font-size:larger" asp-items="ViewBag.CategoryId"></select>
+                <span asp-validation-for="CategoryId" class="text-danger"></span>
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-sm-3">
+                <label asp-for="ActiveId" class="control-label mb-0 fw-bold" style="font-size:larger">Актив</label>
+                <select asp-for="ActiveId" class="form-control" style="width:300px;font-size:larger" asp-items="ViewBag.ActiveId"></select>
+                <span asp-validation-for="ActiveId" class="text-danger"></span>
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-sm-3">
+                <label asp-for="Sum" class="control-label mb-0 fw-bold" style="font-size:larger">Сумма</label>
+                <input asp-for="Sum" class="form-control" style="width:300px;font-size:larger" />
+                <span asp-validation-for="Sum" class="text-danger"></span>
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-sm-3">
+                <label asp-for="Date" class="control-label mb-0 fw-bold" style="font-size:larger">Дата</label>
+                <input asp-for="Date" class="form-control" style="width:300px;font-size:larger" />
+                <span asp-validation-for="Date" class="text-danger"></span>
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-sm-3">
+                <label asp-for="Comment" class="control-label mb-0 fw-bold" style="font-size:larger">Комментарий</label>
+                <input asp-for="Comment" class="form-control" style="width:300px;font-size:larger" />
+                <span asp-validation-for="Comment" class="text-danger"></span>
+            </div>
+        </div>
+        <br>
+        <div class="form-group">
+            <input type="submit" value="Сохранить" style="width:300px; background-color: #8fc4b7;"
+                   class="btn btn-success btn-block btn-lg text-body justify-content-center" />
+        </div>
+    </form>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

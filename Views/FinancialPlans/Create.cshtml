@@ -1,0 +1,117 @@
+﻿@model BudgetPlanningWebApplication.FinancialPlan
+
+@{
+    ViewData["Title"] = "Добавить финансовый план";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<ul class="nav nav-pills nav-justified" style="background: linear-gradient(to right, rgba(132, 250, 176, 0.5), rgba(143, 211, 244, 0.5));">
+    @*<li class="nav-item">
+    <a class="nav-link" role="button" asp-area="" asp-controller="Home" asp-action="Index" style="color:black; font-size:large">Мой кошелек</a>
+    </li>*@
+    <li class="nav-item">
+        <a class="nav-link" style="color:black; font-size:large" role="button"
+           asp-area=" " asp-controller="Users" asp-action="Details" asp-route-id="@Convert.ToInt32(Context.Request.Cookies["uId"])">Мой аккаунт</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" style="color:black; font-size:large" role="button" asp-area="" asp-controller="Home" asp-action="GoToTransaction">Транзакции</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" style="color:black; font-size:large" role="button" asp-area="" asp-controller="FinancialPlans" asp-action="Index">Финансовый план</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" style="color:black; font-size:large" asp-area="" asp-controller="RT" asp-action="LogOut">Выход</a>
+    </li>
+</ul>
+
+<br>
+
+<h2 class="fw-bold mb-4">Добавление нового финансового плана</h2>
+<div>
+    <a asp-action="Index">Вернуться на страницу плана</a>
+</div>
+<br>
+
+    <form asp-action="Create">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <div class="container">
+        <div class="row">
+        <div class="col-lg-4">
+        <div class="row">
+            <div class="col-sm-3">
+                <label asp-for="Name" class="control-label mb-0 fw-bold" style="font-size:larger">Название</label>
+                <input asp-for="Name" class="form-control" style="width:300px;font-size:larger"/>
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-sm-3">
+                <label asp-for="CategoryId" class="control-label mb-0 fw-bold" style="font-size:larger">Категория</label>
+                <select asp-for="CategoryId" class="form-control" style="width:300px;font-size:larger" asp-items="ViewBag.CategoryId"></select>
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-sm-3">
+                <label asp-for="Limit" class="control-label mb-0 fw-bold" style="font-size:larger">Лимит</label>
+                <input asp-for="Limit" class="form-control" style="width:300px;font-size:larger" />
+                <span asp-validation-for="Limit" class="text-danger"></span>
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-sm-3">
+                <label asp-for="StartDate" class="control-label mb-0 fw-bold" style="font-size:larger">Дата начала</label>
+                <input asp-for="StartDate" class="form-control" style="width:300px;font-size:larger" />
+                <span asp-validation-for="StartDate" class="text-danger"></span>
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-sm-3">
+                <label asp-for="EndDate" class="control-label mb-0 fw-bold" style="font-size:larger">Дата окончания</label>
+                <input asp-for="EndDate" class="form-control" style="width:300px;font-size:larger" />
+                <span asp-validation-for="EndDate" class="text-danger"></span>
+            </div>
+        </div>
+        <br>
+        </div>
+        <div class="col-lg-4">
+        <label class="control-label mb-0 fw-bold" style="font-size:larger">Обязательный платёж</label>
+                <br>
+                                <br>
+             <div class="row">
+                <div class="col-sm-3">
+                        <label for="MandatoryPaymentName" class="control-label mb-0 fw-bold" style="font-size:larger">Название</label>
+                        <input name="MandatoryPaymentName" class="form-control" style="width:300px;font-size:larger" />
+                </div>
+            </div>
+                <br>
+             <div class="row">
+                <div class="col-sm-3">
+                        <label for="MandatoryPayment.Sum" class="control-label mb-0 fw-bold" style="font-size:larger">Сумма</label>
+                        <input name="MandatoryPaymentSum" class="form-control" style="width:300px;font-size:larger" />
+                </div>
+            </div>
+                <br>
+            <div class="row">
+                <div class="col-sm-3">
+                        <label for="MandatoryPayment.Comment" class="control-label mb-0 fw-bold" style="font-size:larger">Комментарий</label>
+                        <input name="MandatoryPaymentComment" class="form-control" style="width:300px;font-size:larger" />
+                </div>
+            </div>
+        </div>
+            </div>
+        <br>
+        <div class="form-group">
+            <input type="submit" value="Добавить" style="width:300px; background-color: #8fc4b7;"
+                   class="btn btn-success btn-block btn-lg text-body justify-content-center" />
+        </div>
+    </div>
+    </form>
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

@@ -1,0 +1,54 @@
+﻿@{
+    ViewData["Title"] = "Регистрация";
+}
+
+<section style="background: linear-gradient(to right, rgba(132, 250, 176, 0.5), rgba(143, 211, 244, 0.5));
+margin-top:60px;
+height:80vh;">
+    <div class="mask d-flex align-items-center h-100">
+        <div class="container h-100">
+            <div class="row d-flex justify-content-center align-items-center h-100">
+                <div class="col-12 col-md-9 col-lg-7 col-xl-6">
+                    <div class="card" style="border-radius: 15px;">
+                        <div class="card-body p-5">
+
+                            <h2 class="fw-bold mb-4 text-center ">Регистрация</h2>
+                            <form asp-action="Registr">
+                                <div class="form-outline mb-4">
+                                    <input name="login" class="form-control" placeholder="Логин/Email" />
+                                </div>
+                                <div class="form-outline mb-4">
+                                    <input name="password" class="form-control" placeholder="Пароль" />
+                                </div>
+                                <div>
+                                    <a asp-area="" asp-controller=""></a>
+                                </div>
+                                <div class="d-flex justify-content-center mb-6">
+                                    <input type="submit" value="Зарегистрироваться" style="width:600px; background-color: #8fc4b7;"
+                                           class="btn btn-success btn-block btn-lg text-body" />
+                                </div>
+                                <p class="text-center mt-5 mb-2">
+                                    Уже есть аккаунт? <a asp-action="Index" class="fw-bold mb-4 text-center">Войти</a>
+                                </p>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+@if (ViewData["Registr"] != null)
+{
+    <script type="text/javascript">
+        window.onload = function () {
+            if ("@ViewData["Registr"]" == "Error") {
+                alert("Пользователь, с данными логин/email или пароль, уже существует!!!");
+            }
+            if ("@ViewData["Registr"]" == "Success") {
+                alert("Регистрация прошла успешно!");
+            }
+        };
+    </script>
+}

@@ -1,0 +1,139 @@
+﻿@model BudgetPlanningWebApplication.User
+
+@{
+    ViewData["Title"] = "Профиль";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<ul class="nav nav-pills nav-justified" style="background: linear-gradient(to right, rgba(132, 250, 176, 0.5), rgba(143, 211, 244, 0.5));">
+    @*<li class="nav-item">
+    <a class="nav-link" role="button" asp-area="" asp-controller="Home" asp-action="Index" style="color:black; font-size:large">Мой кошелек</a>
+    </li>*@
+    <li class="nav-item">
+        <a class="nav-link active" style="color:black; border: 4px solid #40E0D0; font-size:large;background: linear-gradient(to right, rgba(132, 250, 176, 0.5), rgba(143, 211, 244, 0.5));"
+           asp-area=" " asp-controller="Users" asp-action="Details" asp-route-id="@Convert.ToInt32(Context.Request.Cookies["uId"])">Мой аккаунт</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" style="color:black; font-size:large" role="button" asp-area="" asp-controller="Home" asp-action="GoToTransaction">Транзакции</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" style="color:black; font-size:large" role="button" asp-area="" asp-controller="FinancialPlans" asp-action="Index">Финансовый план</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" style="color:black; font-size:large" asp-area="" asp-controller="RT" asp-action="LogOut">Выход</a>
+    </li>
+</ul>
+<br>
+<br>
+<br>
+<div class="container">
+    <div class="row">
+         <div class="col">
+            <h3 class="fw-bold mb-4">Мои данные</h3>
+            <br>
+                <div class="row">
+                    <div class="col-sm-3">
+                        <p class="mb-0 fw-bold" style="font-size:larger">Фамилия</p>
+                    </div>
+                    <div class="col-sm-9">
+                    <p class="text-muted mb-0" style="font-size:larger">@Html.DisplayFor(model => model.FirstName)</p>
+                    </div>
+                </div>
+                <hr>
+                <div class="row">
+                    <div class="col-sm-3">
+                    <p class="mb-0 fw-bold" style="font-size:larger">Имя</p>
+                    </div>
+                    <div class="col-sm-9">
+                    <p class="text-muted mb-0" style="font-size:larger">@Html.DisplayFor(model => model.SecondName)</p>
+                    </div>
+                </div>
+                <hr>
+                <div class="row">
+                    <div class="col-sm-3">
+                    <p class="mb-0 fw-bold" style="font-size:larger">Дата рождения</p>
+                    </div>
+                    <div class="col-sm-9">
+                    <p class="text-muted mb-0" style="font-size:larger">@Html.DisplayFor(model => model.DateOfBirth)</p>
+                    </div>
+                </div>
+                <hr>
+                <div class="row">
+                    <div class="col-sm-3">
+                    <p class="mb-0 fw-bold" style="font-size:larger">Логин</p>
+                    </div>
+                    <div class="col-sm-9">
+                    <p class="text-muted mb-0" style="font-size:larger">@Html.DisplayFor(model => model.Login)</p>
+                    </div>
+                </div>
+                <hr>
+                <div class="row">
+                    <div class="col-sm-3">
+                    <p class="mb-0 fw-bold" style="font-size:larger">Пароль</p>
+                    </div>
+                    <div class="col-sm-9">
+                    <p class="text-muted mb-0" style="font-size:larger">@Html.DisplayFor(model => model.Password)</p>
+                    </div>
+                </div>
+                <hr>
+            
+         </div>
+        <div class="col-sm-2">
+        </div>
+            <div class="col">
+            <h3 class="fw-bold mb-4">Мой баланс</h3>
+            <br>
+                @if (Model.Balances.Any())
+                {
+                    if (Model.Balances.Where(u => u.ActiveId == 2).Any())
+                    {
+                        <div class="card mb-2" style="max-width: 400px;">
+                            <div class="row g-0">
+                                <div class="col-md-4">
+                                    <img src="https://static.moneylover.me/img/icon/ic_category_all.png" class="img-fluid rounded-start" alt="https://static.moneylover.me/img/icon/ic_category_all.png">
+                                </div>
+                                <div class="col-md-8">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Банковская карта</h5>
+                                        <p class="card-text" style="font-size:40px;">
+                                            @Html.DisplayFor(model => model.Balances.Where(u=>u.ActiveId==2).First().Sum)р.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                <br>
+                <br>
+                    if (Model.Balances.Where(u => u.ActiveId == 1).Any())
+                    {
+                        <div class="card mb-2" style="max-width: 400px;">
+                            <div class="row g-0">
+                                <div class="col-md-4">
+                                    <img src="https://static.moneylover.me/img/icon/icon.png" class="img-fluid rounded-start" alt="https://static.moneylover.me/img/icon/icon.png">
+                                </div>
+                                <div class="col-md-8">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Наличные</h5>
+                                        <p class="card-text" style="font-size:40px;">
+                                            @Html.DisplayFor(model => model.Balances.Where(u=>u.ActiveId==1).First().Sum)р.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                }
+            <br>
+            <br>
+            </div>
+            
+            </div>
+      </div>
+<div class="row">
+    <div class="col" style="margin-left: 10px;">
+    <a asp-action="Edit" asp-route-id="@Model?.Id" style="width:400px; background-color: #8fc4b7;"
+       class="btn btn-success btn-block btn-lg text-body">Изменить данные</a>
+       </div>
+    <div class="col" style="margin-left: 210px;">
+        <a asp-controller="Balances" asp-action="SelectActive" style="width:400px;  background-color: #8fc4b7;"
+       class="btn btn-success btn-block btn-lg text-body">Изменить баланс</a>
+       </div>
+</div>
